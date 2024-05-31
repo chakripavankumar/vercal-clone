@@ -1,0 +1,12 @@
+{
+  "name": "vercal",
+  "version": "1.0.0",
+  "description": "1-> upload service\r 2-> Deployment service\r 3-> Request service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
