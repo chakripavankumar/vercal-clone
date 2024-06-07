@@ -1,4 +1,7 @@
 "use strict";
+// 89ddfeda621ffc4742de6eea401f139b -> Access key iD
+//  9817a976c69c8b23c441bb9fdcda618c30509f87e795d083088feb089c51c462  -> Scret key Id
+// https://b529916ff3d8c52f03435b6e05b14275.r2.cloudflarestorage.com -> URL
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -18,9 +21,11 @@ const path_1 = __importDefault(require("path"));
 const simple_git_1 = __importDefault(require("simple-git"));
 const utils_1 = require("./utils");
 const file_1 = require("./file");
+const cloudfare_1 = require("./cloudfare");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+(0, cloudfare_1.uploadFile)("dist/output/yr631/package.json", "/Users/pavan/vercal/dist/output/yr631/package.json");
 app.post("/deploy", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const repoUrl = req.body.repoUrl;
     const id = (0, utils_1.generate)();
