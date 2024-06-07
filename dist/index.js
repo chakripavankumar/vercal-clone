@@ -14,8 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 const simple_git_1 = __importDefault(require("simple-git"));
 const utils_1 = require("./utils");
+const file_1 = require("./file");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
@@ -23,18 +25,15 @@ app.post("/deploy", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const repoUrl = req.body.repoUrl;
     const id = (0, utils_1.generate)();
     try {
-        yield (0, simple_git_1.default)().clone(repoUrl, `files/${id}`);
-        res.json({ id: id });
+        yield (0, simple_git_1.default)().clone(repoUrl, path_1.default.join(__dirname, `output/${id}`));
+        const files = (0, file_1.getAllFiles)(path_1.default.join(__dirname, `output/${id}`));
+        console.log(files);
     }
     catch (error) {
         console.error("Error during cloning:", error);
         res.status(500).json({ error: "Failed to clone repository" });
     }
 }));
-app.get("/test", (req, res) => {
-    console.log("hey there");
-    res.send("Hello, world!");
-});
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });
