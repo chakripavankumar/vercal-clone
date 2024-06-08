@@ -10,18 +10,21 @@ import { generate } from "./utils";
 import { getAllFiles } from "./file";
 import { uploadFile } from "./cloudfare";
 
+
+
+uploadFile("\dist\output\vunak\package.json" , "C:\Users\siriy\OneDrive\Desktop\vercal\dist\output\vunak\package.json");
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-uploadFile("dist/output/yr631/package.json" , "/Users/pavan/vercal/dist/output/yr631/package.json");
+
 
 app.post("/deploy", async (req, res) => {
     const repoUrl = req.body.repoUrl;
     const id = generate();
     try {
         await simpleGit().clone(repoUrl, path.join(__dirname,`output/${id}`) );
-        const files= getAllFiles(path.join(__dirname,`output/${id}`))
+        const files= getAllFiles(path.join(__dirname,`output/${id}`));
      console.log(files);
      
     } catch (error) {
