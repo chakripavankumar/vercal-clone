@@ -12,7 +12,8 @@ import { uploadFile } from "./cloudfare";
 
 
 
-uploadFile("\dist\output\vunak\package.json" , "C:\Users\siriy\OneDrive\Desktop\vercal\dist\output\vunak\package.json");
+
+ uploadFile('output\vunak\src\App.jsx' , 'C:\\Users\\siriy\\OneDrive\\Desktop\\vercal\\dist\\output\\ vunak\\src\\App.jsx');
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -26,7 +27,6 @@ app.post("/deploy", async (req, res) => {
         await simpleGit().clone(repoUrl, path.join(__dirname,`output/${id}`) );
         const files= getAllFiles(path.join(__dirname,`output/${id}`));
      console.log(files);
-     
     } catch (error) {
         console.error("Error during cloning:", error);
         res.status(500).json({ error: "Failed to clone repository" });

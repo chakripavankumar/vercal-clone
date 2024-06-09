@@ -22,7 +22,7 @@ const simple_git_1 = __importDefault(require("simple-git"));
 const utils_1 = require("./utils");
 const file_1 = require("./file");
 const cloudfare_1 = require("./cloudfare");
-(0, cloudfare_1.uploadFile)("\dist\output\vunak\package.json", "C:\Users\siriy\OneDrive\Desktop\vercal\dist\output\vunak\package.json");
+(0, cloudfare_1.uploadFile)('output\vunak\src\App.jsx', 'C:\\Users\\siriy\\OneDrive\\Desktop\\vercal\\dist\\output\\ vunak\\src\\App.jsx');
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
