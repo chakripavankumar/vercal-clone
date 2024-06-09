@@ -22,7 +22,6 @@ const simple_git_1 = __importDefault(require("simple-git"));
 const utils_1 = require("./utils");
 const file_1 = require("./file");
 const cloudfare_1 = require("./cloudfare");
-(0, cloudfare_1.uploadFile)('output\vunak\src\App.jsx', 'C:\\Users\\siriy\\OneDrive\\Desktop\\vercal\\dist\\output\\ vunak\\src\\App.jsx');
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
@@ -32,7 +31,12 @@ app.post("/deploy", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         yield (0, simple_git_1.default)().clone(repoUrl, path_1.default.join(__dirname, `output/${id}`));
         const files = (0, file_1.getAllFiles)(path_1.default.join(__dirname, `output/${id}`));
-        console.log(files);
+        files.forEach((file) => __awaiter(void 0, void 0, void 0, function* () {
+            yield (0, cloudfare_1.uploadFile)(file.slice(__dirname.length + 1), file);
+        }));
+        res.json({
+            id: id
+        });
     }
     catch (error) {
         console.error("Error during cloning:", error);

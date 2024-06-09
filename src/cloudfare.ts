@@ -11,7 +11,6 @@ const s3= new S3({
 // filename => output\ID\src\app.jsx
 // filepath => \Users\siriy\OneDrive\Desktop\vercal\dist\output\ID\src\app.jsx
 export const uploadFile = async ( fileName: string , localFilePath : string) =>{
-    console.log("called");
     const fileContent =  fs.readFileSync(localFilePath);
     const response = await s3.upload({
         Body: fileContent,
